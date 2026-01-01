@@ -1,0 +1,13 @@
+version: "2"
+linters:
+  default: all
+  disable:
+    - wsl
+    - revive
+    - ireturn
+    - depguard
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+run:
+  go: '1.25.5'
