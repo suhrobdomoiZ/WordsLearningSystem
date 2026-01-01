@@ -1,0 +1,19 @@
+{{template "base" .}}
+{{define "main"}}
+<table>
+  <thead>
+    <tr>
+      <th>english</th>
+      <th>russian</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .Words}}
+      <tr>
+        <td>{{.English}}</td>
+        <td>{{.Russian}}</td>
+      </tr>
+    {{end}}
+  </tbody>
+</table>
+{{end}}
