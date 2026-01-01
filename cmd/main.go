@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/server"
-	"github.com/suhrobdomoiZ/WordsLearningSystem/pkg/config"
+	"github.com/suhrobdomoiZ/WordsLearningSystem/config"
 )
 
 func main() {
