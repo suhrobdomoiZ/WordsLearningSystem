@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/suhrobdomoiZ/WordsLearningSystem/config"
 	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/handlers"
 )
 
@@ -15,6 +16,7 @@ func NewServer(port int) *Server {
 	return &Server{
 		HTTPServer: &http.Server{
 			Addr: fmt.Sprintf(":%d", port),
+			ReadHeaderTimeout: config.ReadHeaderTimeout,
 		},
 	}
 }

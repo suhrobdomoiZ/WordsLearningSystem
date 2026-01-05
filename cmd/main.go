@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/server"
 	"github.com/suhrobdomoiZ/WordsLearningSystem/config"
+	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/server"
 )
 
 func main() {
@@ -10,8 +10,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	srv := server.NewServer(cfg.Port)
 	srv.AddHandlers()
+
 	err = srv.Start()
 	if err != nil {
 		panic(err)

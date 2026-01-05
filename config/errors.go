@@ -4,4 +4,6 @@ import "errors"
 
 type ConfigError error
 
-var ErrInvalidPort ConfigError = errors.New("invalid port number")
+var (
+	ErrInvalidPort ConfigError = errors.New("invalid port number")
+)

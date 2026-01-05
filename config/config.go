@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"time"
 )
+
+const ReadHeaderTimeout time.Duration = 5 * time.Second
 
 type Config struct {
 	Port int
@@ -15,6 +18,7 @@ func getPort() (int, ConfigError) {
 	if err != nil {
 		return 0, fmt.Errorf("%w: %w", ErrInvalidPort, err)
 	}
+
 	return port, nil
 }
 func LoadConfig() (*Config, ConfigError) {
@@ -22,6 +26,7 @@ func LoadConfig() (*Config, ConfigError) {
 	if err != nil {
 		return nil, err
 	}
+
 	return &Config{
 		Port: port,
 	}, nil
