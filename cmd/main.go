@@ -13,6 +13,7 @@ func main() {
 
 	srv := server.NewServer(cfg.Port)
 	srv.AddHandlers()
+	srv.AddMidlewares()
 
 	err = srv.Start()
 	if err != nil {

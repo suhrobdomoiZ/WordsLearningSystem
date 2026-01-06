@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+	"log/slog"
 	"net/http"
 
 	"github.com/suhrobdomoiZ/WordsLearningSystem/config"
@@ -10,6 +11,7 @@ import (
 
 type Server struct {
 	HTTPServer *http.Server
+	logger *slog.Logger
 }
 
 func NewServer(port int) *Server {
@@ -33,4 +35,8 @@ func (s *Server) AddHandlers() {
 	mux.HandleFunc("/", homepage.Handler)
 
 	s.HTTPServer.Handler = mux
+}
+
+func (s *Server) AddMidlewares(){
+
 }

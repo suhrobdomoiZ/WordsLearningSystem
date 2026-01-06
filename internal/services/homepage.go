@@ -1,6 +1,10 @@
 package services
 
-import "github.com/suhrobdomoiZ/WordsLearningSystem/internal/dto"
+import (
+	"time"
+
+	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/dto"
+)
 
 type Homepage struct {
 }
@@ -25,6 +29,6 @@ func (h *Homepage) GetBuildData() *dto.Homepage {
 				Russian: "верить",
 			},
 		},
-		Year: 2026,
+		Year: time.Now().Year(),
 	}
 }
