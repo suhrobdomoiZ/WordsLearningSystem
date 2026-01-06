@@ -10,5 +10,21 @@ func NewHomepage() *Homepage {
 }
 
 func (h *Homepage) GetBuildData() *dto.Homepage {
-	return &dto.Homepage{}
+	return &dto.Homepage{
+		Words: []dto.Word{
+			{
+				English: "run",
+				Russian: "бежать",
+			},
+			{
+				English: "swim",
+				Russian: "плыть",
+			},
+			{
+				English: "believe",
+				Russian: "верить",
+			},
+		},
+		Year: 2026,
+	}
 }

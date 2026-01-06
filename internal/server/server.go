@@ -27,8 +27,10 @@ func (s *Server) Start() error {
 
 func (s *Server) AddHandlers() {
 	health := handlers.NewHealth()
+	homepage := handlers.NewHomepage()
 	mux := http.NewServeMux()
 	mux.HandleFunc("/health/", health.Handler)
+	mux.HandleFunc("/", homepage.Handler)
 
 	s.HTTPServer.Handler = mux
 }
