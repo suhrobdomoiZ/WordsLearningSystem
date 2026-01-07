@@ -5,6 +5,7 @@ import (
 	"log/slog"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/suhrobdomoiZ/WordsLearningSystem/pkg/logger"
@@ -31,7 +32,7 @@ func getPort() (int, ConfigError) {
 }
 func getLevel() (slog.Level, ConfigError) {
 	level := os.Getenv(LoggerLevelKey)
-	switch level {
+	switch strings.ToUpper(level) {
 	case slog.LevelDebug.String():
 		return slog.LevelDebug, nil
 	case slog.LevelInfo.String():
@@ -41,28 +42,28 @@ func getLevel() (slog.Level, ConfigError) {
 	case slog.LevelWarn.String():
 		return slog.LevelWarn, nil
 	}
+
 	if level == "" {
-		return slog.LevelInfo, fmt.Errorf("%w", ErrEmptyLoggerLevel)
+		return slog.LevelInfo, ErrEmptyLoggerLevel
 	}
 
-	return slog.LevelInfo, fmt.Errorf("%w", ErrInvalidLoggerLevel)
-
+	return slog.LevelInfo, ErrInvalidLoggerLevel
 }
 
-func getLoggerHandlerType() (logger.HandlerType, error){
-	tp := os.Getenv(LoggerHandlerKey)
-	switch logger.HandlerType(tp){
+func getLoggerHandlerType() (logger.HandlerType, ConfigError) {
+	handlerType := os.Getenv(LoggerHandlerKey)
+	switch logger.HandlerType(handlerType) {
 	case logger.HandlerText:
 		return logger.HandlerText, nil
 	case logger.HandlerJSON:
 		return logger.HandlerJSON, nil
 	}
 
-	if tp == "" {
-		return logger.HandlerType(""), fmt.Errorf("%w", ErrEmptyLoggerHandlerType)
+	if handlerType == "" {
+		return logger.HandlerType(""), ErrEmptyLoggerHandlerType
 	}
 
-	return logger.HandlerType(""), fmt.Errorf("%w", ErrInvalidLoggerHandlerType)
+	return logger.HandlerType(""), ErrInvalidLoggerHandlerType
 }
 
 func LoadConfig() (*Config, ConfigError) {
@@ -70,18 +71,20 @@ func LoadConfig() (*Config, ConfigError) {
 	if err != nil {
 		return nil, err
 	}
-	loggerLevel, errr := getLevel()
-	if errr != nil {
-		return nil, errr
+
+	loggerLevel, err := getLevel()
+	if err != nil {
+		return nil, err
 	}
-	tp, errrr := getLoggerHandlerType()
-	if errrr != nil{
-		return nil, errrr
+
+	handlerType, err := getLoggerHandlerType()
+	if err != nil {
+		return nil, err
 	}
 
 	return &Config{
-		Port:        port,
-		LoggerLevel: loggerLevel,
-		LoggerHandler: tp,
+		Port:          port,
+		LoggerLevel:   loggerLevel,
+		LoggerHandler: handlerType,
 	}, nil
 }
