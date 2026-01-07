@@ -11,10 +11,12 @@ import (
 	"github.com/suhrobdomoiZ/WordsLearningSystem/pkg/logger"
 )
 
-const ReadHeaderTimeout time.Duration = 5 * time.Second
-const LoggerLevelKey = "LOGGER_LEVEL"
-const PortKey = "PORT"
-const LoggerHandlerKey = "LOGGER_HANDLER_TYPE"
+const (
+	ReadHeaderTimeout time.Duration = 5 * time.Second
+	LoggerLevelKey                  = "LOGGER_LEVEL"
+	PortKey                         = "PORT"
+	LoggerHandlerKey                = "LOGGER_HANDLER_TYPE"
+)
 
 type Config struct {
 	Port          int
@@ -30,6 +32,7 @@ func getPort() (int, ConfigError) {
 
 	return port, nil
 }
+
 func getLevel() (slog.Level, ConfigError) {
 	level := os.Getenv(LoggerLevelKey)
 	switch strings.ToUpper(level) {

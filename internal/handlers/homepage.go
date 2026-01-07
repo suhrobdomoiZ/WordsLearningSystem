@@ -27,7 +27,11 @@ func (h *Homepage) Handler(writer http.ResponseWriter, request *http.Request) {
 		"templates/footer.html",
 	)
 	if err != nil {
-		http.Error(writer, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		http.Error(
+			writer,
+			http.StatusText(http.StatusInternalServerError),
+			http.StatusInternalServerError,
+		)
 
 		return
 	}
@@ -36,6 +40,10 @@ func (h *Homepage) Handler(writer http.ResponseWriter, request *http.Request) {
 
 	err = pageTemplate.Execute(writer, data)
 	if err != nil {
-		http.Error(writer, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		http.Error(
+			writer,
+			http.StatusText(http.StatusInternalServerError),
+			http.StatusInternalServerError,
+		)
 	}
 }

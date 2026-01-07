@@ -23,6 +23,10 @@ func (h *Health) Handler(writer http.ResponseWriter, request *http.Request) {
 
 	err := encoder.Encode(status)
 	if err != nil {
-		http.Error(writer, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		http.Error(
+			writer,
+			http.StatusText(http.StatusInternalServerError),
+			http.StatusInternalServerError,
+		)
 	}
 }
