@@ -7,8 +7,10 @@ import (
 
 type HandlerType string
 
-const HandlerText HandlerType = "Text"
-const HandlerJSON HandlerType = "JSON"
+const (
+	HandlerText HandlerType = "Text"
+	HandlerJSON HandlerType = "JSON"
+)
 
 func NewLogger(handlerType HandlerType, level slog.Level) *slog.Logger {
 	var handler slog.Handler

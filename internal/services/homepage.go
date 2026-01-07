@@ -6,8 +6,7 @@ import (
 	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/dto"
 )
 
-type Homepage struct {
-}
+type Homepage struct{}
 
 func NewHomepage() *Homepage {
 	return &Homepage{}

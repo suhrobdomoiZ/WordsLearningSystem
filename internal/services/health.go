@@ -2,8 +2,7 @@ package services
 
 import "github.com/suhrobdomoiZ/WordsLearningSystem/internal/dto"
 
-type Health struct {
-}
+type Health struct{}
 
 func NewHealth() *Health {
 	return &Health{}
