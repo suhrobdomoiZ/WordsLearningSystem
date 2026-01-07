@@ -20,10 +20,10 @@ func NewHomepage() *Homepage {
 
 func (h *Homepage) Handler(writer http.ResponseWriter, request *http.Request) {
 	pageTemplate, err := template.ParseFS(
-		assets.GetTemplatesFS(), 
-		"templates/homepage.html", 
-		"templates/header.html", 
-		"templates/base.html", 
+		assets.GetTemplatesFS(),
+		"templates/homepage.html",
+		"templates/header.html",
+		"templates/base.html",
 		"templates/footer.html",
 	)
 	if err != nil {

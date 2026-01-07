@@ -7,7 +7,6 @@ import (
 	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/services"
 )
 
-
 type Health struct {
 	service *services.Health
 }

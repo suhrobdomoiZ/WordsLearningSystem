@@ -1,11 +1,11 @@
 package dto
 
-type Word struct{
+type Word struct {
 	English string
 	Russian string
 }
 
-type Homepage struct{
+type Homepage struct {
 	Words []Word
-	Year int
+	Year  int
 }
