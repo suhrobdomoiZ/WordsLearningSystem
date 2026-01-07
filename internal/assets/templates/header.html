@@ -1,7 +1,20 @@
 {{define "header"}}
-<ul>
-  <li>
-    <a href="/">homepage</a>
-  </li>
-</ul>
+  <div class="container d-flex justify-content-between">
+    <a href="/" class="d-inline-flex">
+      <img src="/static/icons/house-fill.svg" alt="icon">
+    </a>
+    <ul class="nav">
+      <li>
+        <a class="nav-link" href="/">homepage</a>
+      </li>
+    </ul>
+    <div>
+      {{if .User}}
+        <a class="btn btn-outline-primary" href="/account/">account</a>
+      {{else}}
+        <a class="btn btn-outline-primary" href="/account/sign-in/">sign-in</a>
+        <a class="btn btn-primary" href="/account/sign-up/">sign-up</a>
+      {{end}}
+    </div>
+  </div>
 {{end}}

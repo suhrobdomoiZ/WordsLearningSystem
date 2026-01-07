@@ -1,19 +1,21 @@
 {{template "base" .}}
 {{define "main"}}
-<table>
-  <thead>
-    <tr>
-      <th>english</th>
-      <th>russian</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{range .Words}}
-      <tr>
-        <td>{{.English}}</td>
-        <td>{{.Russian}}</td>
-      </tr>
-    {{end}}
-  </tbody>
-</table>
+  <div class="container">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th scope="col">english</th>
+          <th scope="col">russian</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Words}}
+          <tr>
+            <td>{{.English}}</td>
+            <td>{{.Russian}}</td>
+          </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
 {{end}}
