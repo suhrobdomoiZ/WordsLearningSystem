@@ -11,8 +11,9 @@ jobs:
       - uses: golangci/golangci-lint-action@v9
         with:
           version: v2.7.2
-          command: fmt
-          args: --diff
+          command: install-only
+      - name: check format
+        run: golangci-lint fmt --diff
 
   lint:
     runs-on: ubuntu-latest
