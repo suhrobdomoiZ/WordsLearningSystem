@@ -1,8 +1,8 @@
 on: [ push, pull_request ]
 
 jobs:
-  lint:
-    runs-on: ubuntu-22.04
+  format:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-go@v5
@@ -10,4 +10,18 @@ jobs:
           go-version: "1.25.5"
       - uses: golangci/golangci-lint-action@v9
         with:
-          version: "v2.6"
+          version: v2.7.2
+          command: fmt
+          args: --diff
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25.5"
+      - uses: golangci/golangci-lint-action@v9
+        with:
+          version: v2.7.2
+          command: run
