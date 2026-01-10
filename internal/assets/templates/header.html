@@ -1,14 +1,14 @@
 {{define "header"}}
   <div class="container d-flex justify-content-between">
-    <a href="/" class="d-inline-flex">
-      <img src="/static/icons/house-fill.svg" alt="icon">
+    <a href="/" class="col-3 d-inline-flex">
+      <img src="/static/favicon/favicon.svg" width="64" height="64" alt="icon" role="img" />
     </a>
-    <ul class="nav">
-      <li>
+    <ul class="nav justify-content-center align-items-center">
+      <li class="nav-item">
         <a class="nav-link" href="/">homepage</a>
       </li>
     </ul>
-    <div>
+    <div class="col-3 d-flex align-items-center justify-content-end">
       {{if .User}}
         <a class="btn btn-outline-primary" href="/account/">account</a>
       {{else}}

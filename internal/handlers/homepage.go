@@ -1,11 +1,10 @@
 package handlers
 
 import (
-	"html/template"
 	"net/http"
 
-	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/assets"
 	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/services"
+	"github.com/suhrobdomoiZ/WordsLearningSystem/internal/utils"
 )
 
 type Homepage struct {
@@ -19,13 +18,7 @@ func NewHomepage() *Homepage {
 }
 
 func (h *Homepage) Handler(writer http.ResponseWriter, request *http.Request) {
-	pageTemplate, err := template.ParseFS(
-		assets.GetTemplatesFS(),
-		"templates/homepage.html",
-		"templates/header.html",
-		"templates/base.html",
-		"templates/footer.html",
-	)
+	pageTemplate, err := utils.GetTemplate("templates/homepage.html")
 	if err != nil {
 		http.Error(
 			writer,
@@ -38,7 +31,7 @@ func (h *Homepage) Handler(writer http.ResponseWriter, request *http.Request) {
 
 	data := h.service.GetBuildData()
 
-	err = pageTemplate.Execute(writer, data)
+	err = utils.WriteTemplate(writer, request, pageTemplate, data)
 	if err != nil {
 		http.Error(
 			writer,
