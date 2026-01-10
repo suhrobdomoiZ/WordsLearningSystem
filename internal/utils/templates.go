@@ -15,7 +15,7 @@ import (
 type templateData struct {
 	Data any
 	User *dto.User
-	Year int
+	Time time.Time
 }
 
 func GetTemplate(templates ...string) (*template.Template, error) {
@@ -36,14 +36,19 @@ func GetTemplate(templates ...string) (*template.Template, error) {
 
 func WriteTemplate(
 	responseWriter http.ResponseWriter,
+	request *http.Request,
 	pageTemplate *template.Template,
 	data any,
-	user *dto.User,
 ) error {
+	user, ok := request.Context().Value(UserKey).(*dto.User)
+	if !ok {
+		user = nil
+	}
+
 	pageData := templateData{
 		Data: data,
 		User: user,
-		Year: time.Now().Year(),
+		Time: time.Now(),
 	}
 
 	var buffer bytes.Buffer
@@ -53,7 +58,7 @@ func WriteTemplate(
 		return fmt.Errorf("error executing template: %w", err)
 	}
 
-	responseWriter.Header().Set("Content-Type", "text/html; charset=utf-8")
+	responseWriter.Header().Set("Content-Type", MediaTypeTextHTML())
 
 	_, err = io.Copy(responseWriter, &buffer)
 	if err != nil {
